@@ -131,7 +131,7 @@
 
  * examples: minor fix of escaping
  * testing for equivalence of namespaces starting with / or without
- * update index.js
+ * update adapter.js
  * added relevant tests
  * take "" and "/" as equivalent namespaces on server
  * use svg instead of png to get better image quality in readme
