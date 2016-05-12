@@ -1,11 +1,13 @@
 'use strict';
 
-var debug   = require('debug')('kiss.io:room');
-var util    = require('util');
-var io      = require('../../');
+var debug     = require('debug')('kiss.io:room');
+var util      = require('util');
+var io        = require('../../');
 
-var Plugin  = io.Plugin;
-var Socket  = io.Socket;
+var Namespace = io.Namespace;
+var Plugin    = io.Plugin;
+var Socket    = io.Socket;
+
 
 function RoomsPlugin(nsp, opts)
 {
@@ -15,21 +17,29 @@ function RoomsPlugin(nsp, opts)
   }
 
   this.nsp = nsp;
-
   this.rooms = {};
+
+  this.nspExtends =
+  {
+    remove: nsp.remove
+  };
 
   /**
    * Plugin Exports
    */
   this.nspExports =
   {
+    room: this.room,
+    remove: this.extendRemove
   };
 
   this.socketExports =
   {
+    roomIds: [],
+
     join: this.join,
-    to: this.to,
-    rooms: {}
+    leave: this.leave,
+    to: this.to
   };
 }
 
@@ -52,78 +62,34 @@ RoomsPlugin.prototype.join = function(socket, roomId)
 {
   var room = this.createRoom(roomId);
 
-  room.add(socket.id);
-  socket.rooms[roomId] = room;
+  if(socket.roomIds.indexOf(roomId) === -1)
+  {
+    room.add(socket.id);
+    socket.roomIds.push(roomId);
+  }
 
   return room;
 };
 
-/**
- * Broadcasts a packet.
- *
- * Options:
- *  - `flags` {Object} flags for this packet
- *  - `except` {Array} sids that should be excluded
- *  - `rooms` {Array} list of rooms to broadcast to
- *
- * @param {Object} packet object
- * @api public
- */
-
-RoomsPlugin.prototype.broadcast = function(s, packet, opts)
+RoomsPlugin.prototype.leave = function(socket, roomId)
 {
-  var rooms = opts.rooms || [];
-  var except = opts.except || [];
-  var flags = opts.flags || {};
-  var ids = {};
-  var self = this;
-  var socket;
+  var roomIndex = socket.roomIds.indexOf(roomId);
+  var room = this.rooms[roomId];
 
-  var packetOpts = {
-    preEncoded: true,
-    volatile: flags.volatile,
-    compress: flags.compress
-  };
-
-  packet.nsp = s.nsp.name;
-
-  this.encoder.encode(packet, function(encodedPackets)
+  if(roomIndex !== -1)
   {
-    if (rooms.length)
-    {
-      for (var i = 0; i < rooms.length; i++)
-      {
-        var room = self.rooms[rooms[i]];
+    socket.roomIds.splice(roomIndex, 1);
+  }
 
-        if (!room) continue;
+  if(room)
+  {
+    room.del(socket.id);
+  }
+};
 
-        for (let id in Object.keys(room.sockets))
-        {
-          if (ids[id] || ~except.indexOf(id)) continue;
-
-          if (socket)
-          {
-            socket.packet(encodedPackets, packetOpts);
-            ids[id] = true;
-          }
-        }
-      }
-    }
-    else
-    {
-      for (let id in Object.keys(socket.nsp.connected))
-      {
-        if (~except.indexOf(id)) continue;
-
-        let s = socket.nsp.connected[id];
-
-        if (s)
-        {
-          s.packet(encodedPackets, packetOpts);
-        }
-      }
-    }
-  });
+RoomsPlugin.prototype.room = function(nsp, roomId)
+{
+  return this.rooms[roomId];
 };
 
 /**
@@ -144,13 +110,28 @@ RoomsPlugin.prototype.in = function(socket, roomId)
   //  broadcast: room.broadcast.bind(socket)
   //};
 
-  return room
-        .setFlag('except', socket.id);
+  return room.except(socket.id);
+};
+
+RoomsPlugin.prototype.extendRemove = function(nsp, socket)
+{
+  var remove = this.nspExtends.remove;
+  var self = this;
+
+  socket.roomIds.forEach(function(roomId)
+  {
+    self.leave(socket, roomId);
+  });
+
+  if(remove) remove.call(nsp, socket);
 };
 
 function Room(nsp, roomId, construct)
 {
-  if (!(this instanceof Room)) return new Room();
+  if (!(this instanceof Room))
+  {
+    return new Room(nsp, roomId, construct);
+  }
 
   this.id = roomId;
   this.nsp = nsp;
@@ -172,9 +153,18 @@ Room.prototype.setFlag = function(key, value)
   return this;
 };
 
+Room.prototype.except = function(sockets)
+{
+  this.setFlag('except', sockets);
+
+  return this;
+};
+
 Room.prototype.add = function(sid)
 {
-  if(this.sids.indexOf(sid) == -1)
+  var index = this.sids.indexOf(sid);
+
+  if(index === -1)
   {
     this.sids.push(sid);
     this.length++;
@@ -187,7 +177,7 @@ Room.prototype.del = function(sid)
 {
   var index = this.sids.indexOf(sid);
 
-  if(index > -1)
+  if(index !== -1)
   {
     this.sids.splice(index, 1);
     this.length--;
@@ -222,11 +212,12 @@ Room.prototype.broadcast = function()
   return this;
 };
 
-Room.prototype.has = function(socket)
+Room.prototype.has =
+Room.prototype.isInRoom = function(socket)
 {
-  var id = socket.id || socket;
+  var sid = socket.id || socket;
 
-  return this.sids.hasOwnProperty(id);
+  return this.sids.indexOf(sid) !== -1;
 };
 
 Room.prototype.getSockets = function()

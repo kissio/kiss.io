@@ -100,7 +100,7 @@
  * fix leaving unknown rooms [defunctzombie]
  * allow null origins when allowed origins is a function [drewblaisdell]
  * fix tests on node 0.11
- * package: fix `npm test` to run on windows
+ * package: fix `npm test` to execMiddlewares on windows
  * package: bump `debug` v2.1.0 [coderaiser]
  * added tests for volatile [rase-]
 
@@ -464,7 +464,7 @@
 ==================
 
   * Updated socket.io-client.
-  * Make sure we only do garbage collection when the server we receive is actually run.
+  * Make sure we only do garbage collection when the server we receive is actually execMiddlewares.
 
 0.7.8 / 2011-08-08
 ==================

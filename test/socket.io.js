@@ -2142,7 +2142,7 @@ describe('socket.io', function(){
       });
     });
 
-    it('should only call connection after fns', function(done){
+    it('should only call connection after middlewares', function(done){
       var srv = http();
       var sio = io(srv);
       sio.use(function(socket, next){
