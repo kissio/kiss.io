@@ -1,15 +1,17 @@
 'use strict';
 
-// Setup basic express server
 var express = require('express');
 var app     = express();
 var io      = require('../..');
+var router  = require('./router');
 
 var RoomsPlugin = require('./rooms.plugin');
-
-
 var Chat = io.Namespace('/chat');
 
+
+/*
+ * Setup chat
+ */
 Chat.configure(function buildInterface()
 {
   this.plug(RoomsPlugin);
@@ -22,81 +24,29 @@ Chat.configure(function setLocals()
 
 Chat.configure(function registerEvents()
 {
-  this.reg('new message', function(data)
+  // init routers with Router
+  this.use(router);
+
+  // or alternatively, setup route individually
+  this.reg('ping', function()
   {
-    this.to('room1').broadcast('new message', {
-      username: this.username,
-      message: data
-    });
+    this.emit('pong');
   });
 });
 
 Chat.on('connection', function (socket)
 {
-  var addedUser = false;
-
   socket.join('room1');
-
-  // when the client emits 'new message', this listens and executes
-  //socket.on('new message', function (data)
-  //{
-  //  // we tell the client to execute 'new message'
-  //  socket.to('room1').broadcast('new message', {
-  //    username: socket.username,
-  //    message: data
-  //  });
-  //});
-
-  // when the client emits 'add user', this listens and executes
-  socket.on('add user', function (username) {
-    if (addedUser) return;
-
-    // we store the username in the socket session for this client
-    socket.username = username;
-    ++Chat.numUsers;
-    addedUser = true;
-    socket.emit('login', {
-      numUsers: Chat.numUsers
-    });
-
-    // echo globally (all clients) that a person has connected
-    socket.to('room1').broadcast('user joined', {
-      username: socket.username,
-      numUsers: Chat.numUsers
-    });
-  });
-
-  // when the client emits 'typing', we broadcast it to others
-  socket.on('typing', function () {
-    socket.to('room1').broadcast('typing', {
-      username: socket.username
-    });
-  });
-
-  // when the client emits 'stop typing', we broadcast it to others
-  socket.on('stop typing', function () {
-    socket.to('room1').broadcast('stop typing', {
-      username: socket.username
-    });
-  });
-
-  // when the user disconnects.. perform this
-  socket.on('disconnect', function () {
-    if (addedUser) {
-      --Chat.numUsers;
-
-      // echo globally that this client has left
-      socket.to('room1').broadcast('user left', {
-        username: socket.username,
-        numUsers: Chat.numUsers
-      });
-    }
-  });
 });
 
-// Routing
+/*
+ * Setup basic express server, serve web chat gui
+ */
 app.use(express.static(__dirname + '/public'));
 
+/*
+ * Start listening
+ */
 io()
 .mount(Chat)
 .attach(app)
