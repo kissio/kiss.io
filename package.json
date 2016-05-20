@@ -12,7 +12,8 @@
     "io",
     "socket.io",
     "socketio",
-    "socket.io-extended"
+    "socket.io-extended",
+    "kissio"
   ],
   "main": "./lib/server.class.js",
   "license": "MIT",
@@ -23,7 +24,6 @@
   "dependencies": {
     "engine.io": "1.6.8",
     "socket.io-parser": "2.2.6",
-    "socket.io-client": "git://github.com/nus-fboa2016-si/socket.io-client#e0580ef4",
     "has-binary": "0.1.7",
     "debug": "2.2.0"
   },

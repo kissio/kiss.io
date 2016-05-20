@@ -1,6 +1,6 @@
 'use strict';
 
-var debug     = require('debug')('kiss.io:room');
+var debug     = require('debug')('kiss.io:plugin:rooms');
 var util      = require('util');
 var io        = require('../../');
 
@@ -186,7 +186,7 @@ Room.prototype.del = function(sid)
   return this;
 };
 
-Room.prototype.broadcast = function()
+Room.prototype.broadcast = function(event)
 {
   var except  = this._flags['except'];
 

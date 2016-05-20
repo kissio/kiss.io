@@ -12,8 +12,10 @@ module.exports =
 
 function onNewMessage(data)
 {
-  this.to('room1').broadcast('new message', {
-    username: this.username,
+  var socket = this.socket;
+
+  socket.to('room1').broadcast('new message', {
+    username: socket.username,
     message: data
   });
 }
@@ -21,51 +23,57 @@ function onNewMessage(data)
 function onLogin(username)
 {
   var Chat = this.nsp;
+  var socket = this.socket;
 
-  if (this.addedUser) return;
+  if (socket.addedUser) return;
 
   // we store the username in the socket session for this client
-  this.username = username;
+  socket.username = username;
 
   ++Chat.numUsers;
-  this.addedUser = true;
+  socket.addedUser = true;
 
-  this.emit('login', {
+  socket.emit('login', {
     numUsers: Chat.numUsers
   });
 
   // echo globally (all clients) that a person has connected
-  this.to('room1').broadcast('user joined', {
-    username: this.username,
+  socket.to('room1').broadcast('user joined', {
+    username: socket.username,
     numUsers: Chat.numUsers
   });
 }
 
 function onTyping()
 {
-  this.to('room1').broadcast('typing', {
-    username: this.username
+  var socket = this.socket;
+
+  socket.to('room1').broadcast('typing', {
+    username: socket.username
   });
 }
 
 function onStopTyping()
 {
-  this.to('room1').broadcast('stop typing', {
-    username: this.username
+  var socket = this.socket;
+
+  socket.to('room1').broadcast('stop typing', {
+    username: socket.username
   });
 }
 
 function onDisconnect()
 {
   var Chat = this.nsp;
+  var socket = this.socket;
 
-  if (this.addedUser)
+  if (socket.addedUser)
   {
     --Chat.numUsers;
 
     // echo globally that this client has left
-    this.to('room1').broadcast('user left', {
-      username: this.username,
+    socket.to('room1').broadcast('user left', {
+      username: socket.username,
       numUsers: Chat.numUsers
     });
   }

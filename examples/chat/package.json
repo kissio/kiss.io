@@ -1,8 +1,8 @@
 {
-  "name": "socket.io-chat",
+  "name": "kiss.io-examples-chat",
   "version": "0.0.0",
   "description": "A simple chat client using socket.io",
-  "main": "index.js",
+  "main": "app.js",
   "author": "Grant Timmerman",
   "private": true,
   "license": "BSD",

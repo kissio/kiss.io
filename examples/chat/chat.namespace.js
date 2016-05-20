@@ -1,19 +1,17 @@
 'use strict';
 
-var express = require('express');
-var app     = express();
-var io      = require('../..');
-var router  = require('./router');
+var io   = require('../..');
 
-var RoomsPlugin = require('./rooms.plugin');
-var Chat = io.Namespace('/chat');
+var Chat = new io.Namespace('/chat');
 
 
-/*
+/*!
  * Setup chat
  */
 Chat.configure(function buildInterface()
 {
+  var RoomsPlugin = require('./rooms.plugin');
+
   this.plug(RoomsPlugin);
 });
 
@@ -24,6 +22,8 @@ Chat.configure(function setLocals()
 
 Chat.configure(function registerEvents()
 {
+  var router  = require('./router');
+
   // init routers with Router
   this.use(router);
 
@@ -39,18 +39,8 @@ Chat.on('connection', function (socket)
   socket.join('room1');
 });
 
-/*
- * Setup basic express server, serve web chat gui
- */
-app.use(express.static(__dirname + '/public'));
 
-/*
- * Start listening
+/*!
+ * Export Chat
  */
-io()
-.mount(Chat)
-.attach(app)
-.listen(3001, function()
-{
-  console.log('Server listening at port 3001');
-});
+module.exports = Chat;
