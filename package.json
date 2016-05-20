@@ -21,15 +21,17 @@
     "type": "git",
     "url": "git://github.com/amit3vr/kiss.io"
   },
-  "dependencies": {
-    "engine.io": "1.6.8",
-    "socket.io-parser": "2.2.6",
-    "has-binary": "0.1.7",
-    "debug": "2.2.0"
+  "bugs" : {
+    "url" : "https://github.com/amit3vr/kiss.io/issues"
   },
-  "contributors": [
-    {
-      "name": "Amit Evron"
-    }
-  ]
+  "dependencies": {
+    "engine.io": "^1.6.8",
+    "socket.io-parser": "^2.2.6",
+    "has-binary": "0.1.7",
+    "debug": "^2.2.0"
+  },
+  "author": {
+    "name": "Amit Evron",
+    "url": "http://github.com/amit3vr"
+  }
 }
