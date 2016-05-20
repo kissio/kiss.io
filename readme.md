@@ -1,6 +1,6 @@
 # kiss.io # 0.3.0-alpha.1
 
-[![Travis](https://img.shields.io/travis/amit3vr/kiss.io.svg)]() [![license](https://img.shields.io/github/license/amit3vr/kiss.io.svg)]() 
+[![Travis](https://img.shields.io/travis/amit3vr/kiss.io.svg)](https://travis-ci.org/amit3vr/kiss.io) [![license](https://img.shields.io/github/license/amit3vr/kiss.io.svg)](https://github.com/amit3vr/kiss.io/blob/master/LICENSE) 
 
 kiss.io is dedicated for creating a better interface and functionality for the great ole' socket.io v1.4.6 real-time framework, following and honoring the KISS principle - **Keep it Simple, Stupid!**
 
