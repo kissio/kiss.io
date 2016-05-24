@@ -21,8 +21,8 @@
     "type": "git",
     "url": "git://github.com/amit3vr/kiss.io"
   },
-  "bugs" : {
-    "url" : "https://github.com/amit3vr/kiss.io/issues"
+  "bugs": {
+    "url": "https://github.com/amit3vr/kiss.io/issues"
   },
   "dependencies": {
     "engine.io": "^1.6.8",
