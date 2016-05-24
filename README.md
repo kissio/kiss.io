@@ -1,4 +1,4 @@
-# kiss.io # 0.3.0-alpha.1
+# kiss.io `0.3.0-alpha.1`
 
 [![Travis](https://img.shields.io/travis/amit3vr/kiss.io.svg)](https://travis-ci.org/amit3vr/kiss.io) [![license](https://img.shields.io/github/license/amit3vr/kiss.io.svg)](https://github.com/amit3vr/kiss.io/blob/master/LICENSE) 
 
