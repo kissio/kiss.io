@@ -11,6 +11,7 @@
 * **Sexy API** – elegant, simple, sleek, modern and chainable interface, which makes scalability much much easier.
 * **Self-contained namespaces** – in kiss.io namespaces are stand-alone modules. This approach allows for better scalability and code cleanness.
 * **No code clutter** – Lots of old methods and unnecessary logic were removed/rewritten to match the spirit of kiss.io.
+* **Built-in Router** – Because an external plugin for a basic feature is absurd.
 * **Plugins** – Namespaces and sockets are extendable via plugins, which not only offer more modulization of the code, but also flexibility!
 
 *check out [WHY.md](https://github.com/amit3vr/kiss.io/blob/master/WHY.md) for further ranting.*
