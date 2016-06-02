@@ -1,6 +1,6 @@
 # kiss.io `0.3.0-alpha.1`
 
-[![Travis](https://img.shields.io/travis/amit3vr/kiss.io.svg)](https://travis-ci.org/amit3vr/kiss.io) [![license](https://img.shields.io/github/license/amit3vr/kiss.io.svg)](https://github.com/amit3vr/kiss.io/blob/master/LICENSE) 
+[![Travis](https://img.shields.io/travis/kissio/kiss.io.svg)](https://travis-ci.org/kissio/kiss.io) [![license](https://img.shields.io/github/license/kissio/kiss.io.svg)](https://github.com/kissio/kiss.io/blob/master/LICENSE) 
 
 <a href="#"><img src="https://avatars1.githubusercontent.com/u/19560359?v=3&s=50" align="left"></a>
 
@@ -14,7 +14,7 @@
 * **Built-in Router** – Because an external plugin for a basic feature is absurd.
 * **Plugins** – Namespaces and sockets are extendable via plugins, which not only offer more modulization of the code, but also flexibility!
 
-*check out [WHY.md](https://github.com/amit3vr/kiss.io/blob/master/WHY.md) for further ranting.*
+*check out [WHY.md](https://github.com/kissio/kiss.io/blob/master/WHY.md) for further ranting.*
 
 ---
 
@@ -31,10 +31,10 @@ Tests might be missing; API documentation might be lacking; and backwards compat
 *Work in progress*
 
 ## Further Documentation
-Visit the [kiss.io wiki](https://github.com/amit3vr/kiss.io/wiki).
+Visit the [kiss.io wiki](https://github.com/kissio/kiss.io/wiki).
 
 ## Plugins Spotlight
-* **[kiss.io-rooms](http://github.com/amit3vr/kiss.io-rooms)** – adds rooms functionality to your namespaces.
+* **[kiss.io-rooms](http://github.com/kissio/kiss.io-rooms)** – adds rooms functionality to your namespaces.
 
 ---
 
