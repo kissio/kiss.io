@@ -1,6 +1,9 @@
 examples
 docs
+.idea
 .gitignore
 dist
 WHY.md
 releases
+.travis.yml
+icon.png
