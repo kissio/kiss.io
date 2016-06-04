@@ -15,7 +15,7 @@
     "socket.io-extended",
     "kissio"
   ],
-  "main": "./lib/server.class.js",
+  "main": "./lib/server.js",
   "license": "MIT",
   "repository": {
     "type": "git",
