@@ -57,16 +57,18 @@ var kiss = require('kiss.io');
 var io   = new kiss();
 var main = kiss.Namespace('/');
 
-main.on('connection', function(socket)
+main.event('connection', function(socket)
 {
     console.log('Welcome %s', socket.id);
 });
 
-// register an event for socket
-main.reg('disconnect', function()
+// you can do it also like this
+main
+.event('disconnect')
+.triggers(function(socket)
 {
     // this is bounded to an object that contains `socket`, `nsp` and `next`, only when using reg.
-    console.log('Bye Bye %s', this.socket.id);
+    console.log('Bye Bye %s', socket.id);
 });
 
 io
@@ -96,7 +98,7 @@ chat.on('connection', function(socket)
     console.log('a guest has joined the chat');
 });
 
-chat.reg('send-msg', function(msg)
+chat.on('send-msg', function(msg)
 {
     // kiss.io was commanded to broadcast a message to everyone in the chat
     this
@@ -104,7 +106,7 @@ chat.reg('send-msg', function(msg)
     .broadcast('new-msg', msg, this.socket.id);
 });
 
-chat.reg('new-msg', function(msg, author)
+chat.on('new-msg', function(msg, author)
 {
     // print recieved message
     console.log('%s says: %s', author, msg);
