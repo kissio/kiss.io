@@ -1,8 +1,8 @@
-# kiss.io `0.4.0-alpha.1`
+# kiss.io `0.5.0-alpha.1`
 
 [![Travis](https://img.shields.io/travis/kissio/kiss.io.svg)](https://travis-ci.org/kissio/kiss.io) [![license](https://img.shields.io/github/license/kissio/kiss.io.svg)](https://github.com/kissio/kiss.io/blob/master/LICENSE) 
 
-<a href="#"><img src="https://avatars1.githubusercontent.com/u/19560359?v=3&s=50" align="left"></a>
+<a href="https://github.com/kissio/kiss.io"><img src="https://avatars1.githubusercontent.com/u/19560359?v=3&s=50" align="left"></a>
 
 **kiss.io** is dedicated for creating a better interface and functionality for the great ole' [socket.io](http://github.com/socketio/socket.io), following and honoring the K.I.S.S. principle - **Keep it Simple, Stupid!**
 
@@ -14,7 +14,7 @@
 * **Built-in Router** – Because an external plugin for a basic feature is absurd.
 * **Plugins** – Namespaces and sockets are extendable via plugins, which not only offer more modulization, but also extra flexibility!
 
-*check out [WHY.md](https://github.com/kissio/kiss.io/blob/master/WHY.md) for further ranting.*
+*check out [Why kiss.io @ wiki](https://github.com/kissio/kiss.io/wiki/Why-kiss.io) for further ranting.*
 
 ---
 
@@ -57,16 +57,18 @@ var kiss = require('kiss.io');
 var io   = new kiss();
 var main = kiss.Namespace('/');
 
-main.on('connection', function(socket)
+main.event('connection', function(socket)
 {
     console.log('Welcome %s', socket.id);
 });
 
-// register an event for socket
-main.reg('disconnect', function()
+// you can do it also like this
+main
+.event('disconnect')
+.triggers(function(socket)
 {
     // this is bounded to an object that contains `socket`, `nsp` and `next`, only when using reg.
-    console.log('Bye Bye %s', this.socket.id);
+    console.log('Bye Bye %s', socket.id);
 });
 
 io
@@ -96,7 +98,7 @@ chat.on('connection', function(socket)
     console.log('a guest has joined the chat');
 });
 
-chat.reg('send-msg', function(msg)
+chat.on('send-msg', function(msg)
 {
     // kiss.io was commanded to broadcast a message to everyone in the chat
     this
@@ -104,7 +106,7 @@ chat.reg('send-msg', function(msg)
     .broadcast('new-msg', msg, this.socket.id);
 });
 
-chat.reg('new-msg', function(msg, author)
+chat.on('new-msg', function(msg, author)
 {
     // print recieved message
     console.log('%s says: %s', author, msg);
@@ -119,7 +121,7 @@ io
 #### Client Side
 Client side for **kiss.io** is powered via [socket.io-client](https://github.com/socketio/socket.io-client) which you can find via [cdnjs.com](https://cdnjs.com/libraries/socket.io) or the [socket.io website](http://socket.io/download).
 
-Use just as you used to. **kiss.io** uses the same transport mechanism as socket.io (both powered by [engine.io](https://github.com/socketio/engine.io)) so the logic for client is the same for both **kiss.io** and socket.io. This is also holds true for [socket.io-java-client](https://github.com/Gottox/socket.io-java-client), [socket.io-client-swift](https://github.com/socketio/socket.io-client-swift) and [socket.io-client-cpp](https://github.com/socketio/socket.io-client-cpp).
+Use just as you used to. **kiss.io** uses the same transport mechanism as socket.io (both powered by [engine.io](https://github.com/socketio/engine.io)) so the logic for client is the same for both **kiss.io** and **socket.io**. This is also holds true for [socket.io-java-client](https://github.com/Gottox/socket.io-java-client), [socket.io-client-swift](https://github.com/socketio/socket.io-client-swift) and [socket.io-client-cpp](https://github.com/socketio/socket.io-client-cpp).
 
 ## Further Documentation
 Visit the [kiss.io wiki](https://github.com/kissio/kiss.io/wiki).
@@ -134,4 +136,4 @@ Visit the [kiss.io wiki](https://github.com/kissio/kiss.io/wiki).
 ---
 
 # LICENSE
-MIT
+[MIT](https://github.com/kissio/kiss.io/blob/master/LICENSE)
