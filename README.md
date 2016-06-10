@@ -2,7 +2,7 @@
 
 [![Travis](https://img.shields.io/travis/kissio/kiss.io.svg)](https://travis-ci.org/kissio/kiss.io) [![license](https://img.shields.io/github/license/kissio/kiss.io.svg)](https://github.com/kissio/kiss.io/blob/master/LICENSE) 
 
-<a href="#"><img src="https://avatars1.githubusercontent.com/u/19560359?v=3&s=50" align="left"></a>
+<a href="https://github.com/kissio/kiss.io"><img src="https://avatars1.githubusercontent.com/u/19560359?v=3&s=50" align="left"></a>
 
 **kiss.io** is dedicated for creating a better interface and functionality for the great ole' [socket.io](http://github.com/socketio/socket.io), following and honoring the K.I.S.S. principle - **Keep it Simple, Stupid!**
 
@@ -121,7 +121,7 @@ io
 #### Client Side
 Client side for **kiss.io** is powered via [socket.io-client](https://github.com/socketio/socket.io-client) which you can find via [cdnjs.com](https://cdnjs.com/libraries/socket.io) or the [socket.io website](http://socket.io/download).
 
-Use just as you used to. **kiss.io** uses the same transport mechanism as socket.io (both powered by [engine.io](https://github.com/socketio/engine.io)) so the logic for client is the same for both **kiss.io** and socket.io. This is also holds true for [socket.io-java-client](https://github.com/Gottox/socket.io-java-client), [socket.io-client-swift](https://github.com/socketio/socket.io-client-swift) and [socket.io-client-cpp](https://github.com/socketio/socket.io-client-cpp).
+Use just as you used to. **kiss.io** uses the same transport mechanism as socket.io (both powered by [engine.io](https://github.com/socketio/engine.io)) so the logic for client is the same for both **kiss.io** and **socket.io**. This is also holds true for [socket.io-java-client](https://github.com/Gottox/socket.io-java-client), [socket.io-client-swift](https://github.com/socketio/socket.io-client-swift) and [socket.io-client-cpp](https://github.com/socketio/socket.io-client-cpp).
 
 ## Further Documentation
 Visit the [kiss.io wiki](https://github.com/kissio/kiss.io/wiki).
@@ -136,4 +136,4 @@ Visit the [kiss.io wiki](https://github.com/kissio/kiss.io/wiki).
 ---
 
 # LICENSE
-MIT
+[MIT](https://github.com/kissio/kiss.io/blob/master/LICENSE)
