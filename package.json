@@ -1,6 +1,6 @@
 {
   "name": "kiss.io",
-  "version": "0.5.1-alpha.1",
+  "version": "0.5.2-alpha.1",
   "description": "A dead-simple and powerful realtime framework that respects high standards. Based upon socket.io, but better.",
   "keywords": [
     "realtime",
