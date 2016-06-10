@@ -14,7 +14,7 @@
 * **Built-in Router** – Because an external plugin for a basic feature is absurd.
 * **Plugins** – Namespaces and sockets are extendable via plugins, which not only offer more modulization, but also extra flexibility!
 
-*check out [WHY.md](https://github.com/kissio/kiss.io/blob/master/WHY.md) for further ranting.*
+*check out [Why kiss.io @ wiki](https://github.com/kissio/kiss.io/wiki/Why-kiss.io) for further ranting.*
 
 ---
 
