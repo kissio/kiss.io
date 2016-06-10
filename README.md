@@ -24,8 +24,16 @@ This project is currently on **alpha** stages and is **not meant for production*
 Tests might be missing; API documentation might be lacking; and backwards compatibility is not promised. *Use at your own risk.*
 
 ----
-## Install
+## Installing
 `$ npm install kiss.io`
+
+## Debugging
+**kiss.io** uses the [debug](https://github.com/visionmedia/debug) package utility for monitoring it's activity.  
+Simply start logging activity to the screen by setting the `DEBUG` environment variable to `kiss.io:*` like this:  
+`$ set DEBUG="kiss.io:*"`
+
+You can also set `DEBUG` for each module by itself, by assigning one (or more) of the following values:
+> kiss.io:server | kiss.io:client | kiss.io:namespace | kiss.io:plugin | kiss.io:router | kiss.io:socket
 
 ## Getting Started
 #### Server Side
@@ -53,8 +61,8 @@ io.listen(3000);
 **kiss.io style**  
 a bit more 'modern' style of writing. registers events for sockets using the `reg` (aka `registerEvent`) method. mount the main namespace on the server, and start listening on port `3000`.
 ```javascript
-var kiss = require('kiss.io');
-var io   = new kiss();
+var kiss = require('kiss.io'),
+    io   = new kiss();
 var main = kiss.Namespace('/');
 
 main.event('connection', function(socket)
@@ -64,12 +72,11 @@ main.event('connection', function(socket)
 
 // you can do it also like this
 main
-.event('disconnect')
-.triggers(function(socket)
-{
-    // this is bounded to an object that contains `socket`, `nsp` and `next`, only when using reg.
-    console.log('Bye Bye %s', socket.id);
-});
+  .event('disconnect')
+  .triggers(function(socket)
+  {
+      console.log('Bye Bye %s', socket.id);
+  });
 
 io
 .mount(main)
@@ -80,10 +87,8 @@ io
 this shows the possibility to attach an Express.js instance as the front-end for the kiss.io server, and using multiple routes for manipulating data on the server (sending and recieving messages). also note that in this example we used a singleton instance of server instead of creating a new independent one.
 ```javascript
 var express = require('express');
-var kiss = require('kiss.io');
-// if not initiated with the `new` keyword, uses a singleton server instance
-// ..which is accessible from anywhere by including 'kiss.io'.
-var io = kiss();
+var kiss = require('kiss.io'),
+    io = kiss();
 
 var app = express();
 var chat = kiss.Namespace('/chat');
@@ -100,15 +105,12 @@ chat.on('connection', function(socket)
 
 chat.on('send-msg', function(msg)
 {
-    // kiss.io was commanded to broadcast a message to everyone in the chat
-    this
-    .socket
+    this.socket
     .broadcast('new-msg', msg, this.socket.id);
 });
 
 chat.on('new-msg', function(msg, author)
 {
-    // print recieved message
     console.log('%s says: %s', author, msg);
 });
 
