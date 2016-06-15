@@ -30,10 +30,16 @@ Tests might be missing; API documentation might be lacking; and backwards compat
 ## Debugging
 **kiss.io** uses the [debug](https://github.com/visionmedia/debug) package utility for monitoring it's activity.  
 Simply start logging activity to the screen by setting the `DEBUG` environment variable to `kiss.io:*` like this:  
-`$ set DEBUG="kiss.io:*"`
+```bash
+$ set DEBUG="kiss.io:*"
+```
 
 You can also set `DEBUG` for each module by itself, by assigning one (or more) of the following values:
-> kiss.io:server | kiss.io:client | kiss.io:namespace | kiss.io:plugin | kiss.io:router | kiss.io:socket
+> kiss.io:server | kiss.io:client | kiss.io:namespace | kiss.io:plugin | kiss.io:router | kiss.io:socket  
+
+```bash
+$ set DEBUG="kiss.io:server,kiss.io:namespace"
+```
 
 ## Getting Started
 #### Server Side
