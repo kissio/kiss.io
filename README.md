@@ -65,7 +65,7 @@ io.listen(3000);
 ```
 
 **kiss.io style**  
-a bit more 'modern' style of writing. registers events for sockets using the `reg` (aka `registerEvent`) method. mount the main namespace on the server, and start listening on port `3000`.
+a bit more 'modern', express.js style of writing. registers events for sockets using the `event` (aka `on`) method. mounts the main namespace on the server, and start listening on port `3000`.
 ```javascript
 var kiss = require('kiss.io'),
     io   = new kiss();
@@ -100,7 +100,7 @@ var kiss = require('kiss.io'),
 var app = express();
 var chat = kiss.Namespace('/chat');
 
-app.get('/', function (req, res)
+app.get('/', function(req, res)
 {
     res.status(200).send('Welcome to kiss.io chat!');
 });
