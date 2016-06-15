@@ -73,7 +73,8 @@ main.event('connection', function(socket)
 // you can do it also like this
 main
   .event('disconnect')
-  .triggers(function(socket)
+  .once()
+  .triggers(function onDisconnect(socket)
   {
       console.log('Bye Bye %s', socket.id);
   });
