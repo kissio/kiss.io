@@ -1,4 +1,4 @@
-# kiss.io `v0.5.2-alpha.1`
+# kiss.io `v0.6.1-beta.1`
 
 [![Travis](https://img.shields.io/travis/kissio/kiss.io.svg)](https://travis-ci.org/kissio/kiss.io) [![license](https://img.shields.io/github/license/kissio/kiss.io.svg)](https://github.com/kissio/kiss.io/blob/master/LICENSE) 
 
@@ -19,7 +19,7 @@
 ---
 
 ##### Important Disclaimer
-This project is currently on **alpha** stages and is **not meant for production**!
+This project is currently on **beta** stages and is **not meant for production**!
 
 Tests might be missing; API documentation might be lacking; and backwards compatibility is not promised. *Use at your own risk.*
 
@@ -30,10 +30,16 @@ Tests might be missing; API documentation might be lacking; and backwards compat
 ## Debugging
 **kiss.io** uses the [debug](https://github.com/visionmedia/debug) package utility for monitoring it's activity.  
 Simply start logging activity to the screen by setting the `DEBUG` environment variable to `kiss.io:*` like this:  
-`$ set DEBUG="kiss.io:*"`
+```bash
+$ set DEBUG="kiss.io:*"
+```
 
 You can also set `DEBUG` for each module by itself, by assigning one (or more) of the following values:
-> kiss.io:server | kiss.io:client | kiss.io:namespace | kiss.io:plugin | kiss.io:router | kiss.io:socket
+> kiss.io:server | kiss.io:client | kiss.io:namespace | kiss.io:plugin | kiss.io:router | kiss.io:socket  
+
+```bash
+$ set DEBUG="kiss.io:server,kiss.io:namespace"
+```
 
 ## Getting Started
 #### Server Side
@@ -59,7 +65,7 @@ io.listen(3000);
 ```
 
 **kiss.io style**  
-a bit more 'modern' style of writing. registers events for sockets using the `reg` (aka `registerEvent`) method. mount the main namespace on the server, and start listening on port `3000`.
+a bit more 'modern', express.js style of writing. registers events for sockets using the `event` (aka `on`) method. mounts the main namespace on the server, and start listening on port `3000`.
 ```javascript
 var kiss = require('kiss.io'),
     io   = new kiss();
@@ -73,7 +79,8 @@ main.event('connection', function(socket)
 // you can do it also like this
 main
   .event('disconnect')
-  .triggers(function(socket)
+  .once()
+  .triggers(function onDisconnect(socket)
   {
       console.log('Bye Bye %s', socket.id);
   });
@@ -93,7 +100,7 @@ var kiss = require('kiss.io'),
 var app = express();
 var chat = kiss.Namespace('/chat');
 
-app.get('/', function (req, res)
+app.get('/', function(req, res)
 {
     res.status(200).send('Welcome to kiss.io chat!');
 });
