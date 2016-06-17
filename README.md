@@ -1,4 +1,4 @@
-# kiss.io `v0.6.0-alpha.1`
+# kiss.io `v0.6.1-beta.1`
 
 [![Travis](https://img.shields.io/travis/kissio/kiss.io.svg)](https://travis-ci.org/kissio/kiss.io) [![license](https://img.shields.io/github/license/kissio/kiss.io.svg)](https://github.com/kissio/kiss.io/blob/master/LICENSE) 
 
@@ -19,7 +19,7 @@
 ---
 
 ##### Important Disclaimer
-This project is currently on **alpha** stages and is **not meant for production**!
+This project is currently on **beta** stages and is **not meant for production**!
 
 Tests might be missing; API documentation might be lacking; and backwards compatibility is not promised. *Use at your own risk.*
 
