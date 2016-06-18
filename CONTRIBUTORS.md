@@ -6,7 +6,7 @@ and stick to the following small guide:
 #### How to Report an Issue
 1. **First of all, make sure that you search for a similar issue first.**
 If the search results don't satisfy you, or too old for your matter,
-only then consider reporting. Also try to [Google](https://google.com] your
+only then consider reporting. Also try to [Google](https://google.com) your
 problem, and [search in StackOverflow](http://stackoverflow.com/questions/tagged/kiss.io).
 This done to ease with a potential stress of issues and making sure that
 you don't file an invaluable issues.
@@ -34,12 +34,12 @@ conflict with kiss.io's api documentation.
 7. Send Pull Requests.
 
 ## Don't Know Where to Begin? (TO DO LIST)
-1. Improve current tests, make them as thorough as possible.
-2. Make `Router` logic faster.
-3. Write plugins! everything that serves you can serve others.
-4. Write more examples.
-5. Write more documentation/fix lacking docs.
-6. Propose new features in the [Issues]https://github.com/kissio/kiss.io/issues) section.
-7. Make `Server`, `Client`, `Socket` and `Namespace` logic that belongs to connecting
+- [ ] Improve current tests, make them as thorough as possible.
+- [ ] Make `Router` logic faster.
+- [ ] Write plugins! everything that serves you can serve others.
+- [ ] Write more examples.
+- [ ] Write more documentation/fix lacking docs.
+- [ ] Propose new features in the [Issues](https://github.com/kissio/kiss.io/issues) section.
+- [ ] Make `Server`, `Client`, `Socket` and `Namespace` logic that belongs to connecting
 and initiating a connection as seamless and fast as it can.
-8. Check for memory leaks.
+- [ ] Check for memory leaks.
