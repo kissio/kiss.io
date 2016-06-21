@@ -7,16 +7,18 @@ var kiss = require('../../..'),
 /*!
  * Init namespace
  */
-main.use(function middleware()
+main.use(function verify(socket, heads, next)
 {
-  console.log('just a middleware passing by.. don\'t mind me');
-});
+  var token = heads['x-token'];
 
-main.use(function crashConnection()
-{
-  throw new Error('Main namespace is closed; ' +
-    'error has been thrown automatically from middleware.\n' +
-    'Check /math.');
+  if(token == '123123')
+  {
+    next();
+  }
+  else
+  {
+    next('bad token (pass 123123 with header x-token)');
+  }
 });
 
 main.on('connection', function(socket)

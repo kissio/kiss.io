@@ -4,7 +4,10 @@
 var SUCCESS = 0, ERROR = 1;
 
 var io = require('kiss.io-client'),
-    main = io.connect('http://localhost:3456');
+    main = io.connect('http://localhost:3456',
+    {
+      extraHeaders: { 'X-Token': '1231234' }
+    });
 
 console.log("#test/client/main loaded. " +
   "connecting to '/main' on port 3456.");
