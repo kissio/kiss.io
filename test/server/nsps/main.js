@@ -24,7 +24,7 @@ main.use(function verify(socket, heads, next)
 main.on('connection', function(socket)
 {
   // Should not get here.
-  console.log('Welcome; sid: %s', socket.id);
+  console.log('Welcome to main nsp; sid: %s', socket.id);
 });
 
 main.on('disconnection', function(socket)
