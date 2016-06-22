@@ -1,4 +1,4 @@
-# kiss.io Contributing Process
+# kiss.io Contribution Code of Conduct
 First of all, thanks for checking **kiss.io** and getting involved.  
 In order to start contributing to the project, please make it easier for all of us
 and stick to the following small guide:
