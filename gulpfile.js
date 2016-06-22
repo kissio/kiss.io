@@ -10,10 +10,10 @@ gulp.task('compress', function()
 {
   return gulp.src('lib/*.js')
   .pipe(uglify())
-  .pipe(gulp.dest('min'))
-  .on('error', function(e)
-  {
-    console.log(e.message);
-  });
+  .pipe(gulp.dest('min'));
 });
 
+process.on('uncaughtException', function(e)
+{
+  console.log(e);
+});
