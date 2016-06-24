@@ -1,6 +1,6 @@
 'use strict';
 
-var kiss = require('../../../'),
+var kiss = require('../../../lib'),
     router = kiss.Router();
 
 var mathHandler = require('../handlers/math');

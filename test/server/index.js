@@ -3,7 +3,7 @@
 
 var SUCCESS = 0, ERROR = 1;
 
-var kiss = require('../../'),
+var kiss = require('../../lib'),
     io   = kiss();
 
 var main = require('./nsps/main');
