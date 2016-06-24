@@ -19,7 +19,7 @@ router
   .triggers(mathHandler.onIncrement);
 
 router
-  .eventOnce('math.dec')
+  .event('math.dec')
   .triggers(mathHandler.onDecrement);
 
 router

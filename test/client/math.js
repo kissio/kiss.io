@@ -36,9 +36,9 @@ math.on('error', function(error)
 
 math.on('math.results', function(counter)
 {
-  if(counter != 2)
+  if(counter != 1)
   {
-    console.log('math.results: got wrong results! expecting 2, got %d', counter);
+    console.log('math.results: got wrong results! expecting 1, got %d', counter);
     process.exit(ERROR);
   }
   else
