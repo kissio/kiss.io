@@ -9,27 +9,36 @@ module.exports =
   onPrint: onPrint
 };
 
-function onIncrement(socket)
 {
-  var math = socket.nsp;
+function onIncrement()
+  var math = this.nsp;
+
   math.counter++;
+  this.next();
 }
 
-function onDecrement(socket)
+function onDecrement()
 {
-  var math = socket.nsp;
+  var math = this.nsp;
+
   math.counter--;
+  this.next();
 }
 
-function onCalculate(socket)
+function onCalculate()
 {
-  var math = socket.nsp;
-  socket.emit('math.results', math.counter);
+  var math = this.nsp;
+
+  this.socket.emit('math.results', math.counter);
+  this.next();
 }
 
-function onPrint(socket)
+function onPrint()
 {
-  var math = socket.nsp;
+  var math = this.nsp;
+
   console.log("'/math': Events Triggered: %d; " +
     "Counter: %d", math.eventsTriggered, math.counter);
+
+  this.next();
 }
