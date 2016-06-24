@@ -1,6 +1,5 @@
 'use strict';
 
-var EE2  = require('eventemitter2').EventEmitter2;
 var kiss = require('../../../lib'),
     math = kiss.Namespace('/math');
 
@@ -15,7 +14,6 @@ math.configure(function prepareVars()
 
 math.configure(function initRouter()
 {
-  this.setEmitter(EE2, { wildcard: true });
   this.use(require('../routers/math'));
 });
 
