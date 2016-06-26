@@ -25,8 +25,7 @@
     "url": "https://github.com/kissio/kiss.io/issues"
   },
   "scripts": {
-    "prepublish": "gulp build",
-    "test": "concurrently \"node ./test/server\" \"node ./test/client/main\" \"node ./test/client/math\" "
+    "prepublish": "gulp build"
   },
   "dependencies": {
     "debug": "2.2.0",
