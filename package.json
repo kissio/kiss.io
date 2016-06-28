@@ -25,7 +25,8 @@
     "url": "https://github.com/kissio/kiss.io/issues"
   },
   "scripts": {
-    "prepublish": "gulp build"
+    "prepublish": "gulp build",
+    "build": "gulp build"
   },
   "dependencies": {
     "debug": "2.2.0",
