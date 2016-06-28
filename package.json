@@ -1,6 +1,6 @@
 {
   "name": "kiss.io",
-  "version": "0.6.1-beta.1",
+  "version": "0.7.0-beta.1",
   "description": "A dead-simple and powerful realtime framework that respects high standards. Based upon socket.io, but better.",
   "keywords": [
     "realtime",
@@ -15,7 +15,7 @@
     "socket.io-extended",
     "kissio"
   ],
-  "main": "./lib/server.js",
+  "main": "./min",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -25,7 +25,8 @@
     "url": "https://github.com/kissio/kiss.io/issues"
   },
   "scripts": {
-    "test": "concurrently \"node ./test/server\" \"node ./test/client/main\" \"node ./test/client/math\" "
+    "prepublish": "gulp build",
+    "build": "gulp build"
   },
   "dependencies": {
     "debug": "2.2.0",
@@ -39,7 +40,8 @@
   },
   "devDependencies": {
     "concurrently": "2.1.0",
-    "eventemitter2": "1.0.3",
+    "gulp": "3.9.1",
+    "gulp-uglify": "1.5.3",
     "kiss.io-client": "1.5.0"
   }
 }

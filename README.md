@@ -1,4 +1,4 @@
-# kiss.io `v0.6.1-beta.1`
+# kiss.io `v0.7.0-beta.1`
 
 [![Travis](https://img.shields.io/travis/kissio/kiss.io.svg)](https://travis-ci.org/kissio/kiss.io) [![license](https://img.shields.io/github/license/kissio/kiss.io.svg)](https://github.com/kissio/kiss.io/blob/master/LICENSE) 
 
