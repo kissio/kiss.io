@@ -4,3 +4,5 @@
 .travis.yml
 icon.png
 lib
+CONTRIBUTORS.md
+gulpfile.js
