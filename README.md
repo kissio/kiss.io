@@ -1,4 +1,4 @@
-# kiss.io `v0.7.0-beta.1`
+# kiss.io `v0.7.0-beta.1 (unstable)` 
 
 [![Travis](https://img.shields.io/travis/kissio/kiss.io.svg)](https://travis-ci.org/kissio/kiss.io) [![license](https://img.shields.io/github/license/kissio/kiss.io.svg)](https://github.com/kissio/kiss.io/blob/master/LICENSE) 
 
@@ -6,12 +6,16 @@
 
 **kiss.io** is dedicated for creating a better interface and functionality for the great ole' [socket.io](http://github.com/socketio/socket.io), following and honoring the K.I.S.S. principle - **Keep it Simple, Stupid!**
 
+#### FOR YOUR ATTENTION
+> *This project is no longer maintained due to lack of time. I designed it just as a PoC, and for my own personal small projects.
+> If you'd like to see this project to go on a stable version, I highly recommend you to fork this project and improve it on your own.  
+> I might continue working on it when times will be less dense.*
 
 ## Why kiss.io?
-* **Sexy API** – elegant, simple, sleek, modern, objected-oriented and chainable interface, which makes scalability much much easier.
-* **Self-contained namespaces** – in kiss.io namespaces are stand-alone modules. This approach allows for better scalability and code cleanness.
-* **No code clutter** – Lots of old methods and unnecessary logic were removed/rewritten to match the spirit of kiss.io. We want you to just focus on the important stuff.
-* **Built-in Router** – Because an external plugin for a basic feature is absurd.
+* **Sleek API** – Elegant, simple, chainable api. 
+* **Self-Contained Namespaces** – In kiss.io namespaces are stand-alone instances. This approach allows for better scalability and code cleanness.
+* **No Code Clutter** – Lots of old methods and unnecessary logic were removed/rewritten to match the spirit of kiss.io. Focus on the important stuff.
+* **Built-In Router** – Because an external plugin for a basic feature is absurd.
 * **Plugins** – Namespaces and sockets are extendable via plugins, which not only offer more modulization, but also extra flexibility!
 
 *check out [Why kiss.io @ wiki](https://github.com/kissio/kiss.io/wiki/Why-kiss.io) for further ranting.*
